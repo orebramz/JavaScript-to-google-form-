@@ -1,0 +1,70 @@
+<div style="background: rgba(255, 255, 255, 0.8); padding: 20px; border-radius: 5px;">
+    <form id="googleForm" action="https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse" method="post" style="color: #004d40;">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <select id="title" name="entry.1234567890" style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #cccccc; border-radius: 5px;">
+                <option value="Prof.">Prof.</option>
+                <option value="Dr.">Dr.</option>
+                <option value="Barr.">Barr.</option>
+                <option value="Mr.">Mr.</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="fullname">Full Name:</label>
+            <input type="text" id="fullname" name="entry.2345678901" required style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #cccccc; border-radius: 5px;">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="entry.3456789012" required style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #cccccc; border-radius: 5px;">
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="entry.4567890123" required style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #cccccc; border-radius: 5px;">
+        </div>
+        <div class="form-group">
+            <label for="affiliations">Affiliations:</label>
+            <input type="text" id="affiliations" name="entry.5678901234" required style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #cccccc; border-radius: 5px;">
+        </div>
+        <div class="form-group">
+            <label for="category">Select your Category:</label>
+            <select id="category" name="entry.6789012345" style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #cccccc; border-radius: 5px;">
+                <option value="Professional Member">Professional Member</option>
+                <option value="Student Member">Student Member</option>
+                <option value="Non Student Member">Non Student Member</option>
+                <option value="Non Professional Member">Non Professional Member</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="file">Upload File:</label>
+            <input type="file" id="file" name="entry.7890123456" style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #cccccc; border-radius: 5px; background-color: #ffffff;">
+        </div>
+        <button type="submit" style="background-color: #004d40; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; width: 100%;">Submit</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('googleForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var form = e.target;
+
+        // Create a FormData object from the form element
+        var formData = new FormData(form);
+
+        // Define the Google Form URL (replace with your form's action URL)
+        var googleFormURL = form.action;
+
+        // Send the form data to the Google Form URL using fetch
+        fetch(googleFormURL, {
+            method: 'POST',
+            body: formData,
+            mode: 'no-cors'  // This is important to avoid CORS issues
+        }).then(function(response) {
+            alert('Form submitted successfully!');
+            form.reset();  // Reset the form after submission
+            window.location.href = 'https://your-redirect-url.com';  // Replace with your redirect URL
+        }).catch(function(error) {
+            console.error('Error:', error);
+            alert('There was a problem with your submission. Please try again.');
+        });
+    });
+</script>
